@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 /*
  * Adapter Design Pattern
@@ -23,7 +24,13 @@
 
 public class MyMain {
 	public static void main(String[] args) {
-		int[] array = {25, 37, 12, 8, -5};
+		//int[] array = {25, 37, 12, 8, -5};
+		HashMap<Integer, Integer> array = new HashMap<Integer, Integer>();	//to add bVals I converted the input to a HashMap instead of an array. HashMaps will hold valA and valB
+		array.put(25, 32);
+		array.put(37, 9);
+		array.put(12, -43);
+		array.put(8, 3);
+		array.put(-5, 200);
 		
 		DataStructsFrame frame = new DataStructsFrame ("Adapter Design Pattern Demonstration", array);		
 	}

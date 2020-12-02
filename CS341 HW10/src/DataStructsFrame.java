@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class DataStructsFrame extends JFrame {
-	public DataStructsFrame(String title, int[] numbers) {
+	public DataStructsFrame(String title, HashMap<Integer, Integer> numbers) {
 		super(title);
 
 		final JPanel panel = new JPanel();
@@ -59,23 +61,57 @@ public class DataStructsFrame extends JFrame {
 		setVisible(true);
 	}
 	
-	private ArrayList<ListItem> IDontLikeListItemSoIamConvertingToIntegersForSorting(int[] numbers) {
-		Arrays.sort(numbers);
+	private ArrayList<ListItem> IDontLikeListItemSoIamConvertingToIntegersForSorting(HashMap<Integer, Integer> numbers) {
+		/*
+		 * Set<Integer> keySet = numbers.keySet(); Set<Integer> valueSet =
+		 * (Set<Integer>) numbers.values();
+		 */
+		
+		/*
+		 * int keyArr[] = null; int i = 0; for (int x: keySet) { keyArr[i] = x; }
+		 * 
+		 * int valuesArr[] = null; int j = 0; for (int y: valueSet) { valuesArr[j] = y;
+		 * }
+		 */
+		
+		Object[] valuesArr = numbers.values().toArray();
+		Object[] keyArr = numbers.keySet().toArray();
+		
+		Arrays.sort(valuesArr);
 		ArrayList<ListItem> list = new ArrayList<ListItem>();
 		
-		for (int i = numbers.length-1; i >= 0 ; i--) {	//adding sorted numbers to an ArrayList<ListItems> in descending order
-			ListItem item = new ListItem(numbers[i]);
+		for (int k = numbers.size()-1; k >= 0 ; k--) {	//adding sorted numbers to an ArrayList<ListItems> in descending order
+			ListItem item = new ListItem((int)keyArr[k], (int)valuesArr[k]);
 			list.add(item);
 		}
 
 		return list;
 	}
 
-	private ArrayList<ListItem> arrayToList(int[] numbers) {
+	private ArrayList<ListItem> arrayToList(HashMap<Integer, Integer> numbers) {
 		ArrayList<ListItem> list = new ArrayList<ListItem>();
-
-		for (int i = 0; i < numbers.length; i++) {
-			ListItem item = new ListItem(numbers[i]);
+		/*
+		 * Set<Integer> keySet = numbers.keySet(); Set<Integer> valueSet =
+		 * (Set<Integer>) numbers.values();
+		 * 
+		 * int keyArr[] = null; int i = 0; for (int x: keySet) { keyArr[i] = x; }
+		 * 
+		 * int valuesArr[] = null; int j = 0; for (int y: valueSet) { valuesArr[j] = y;
+		 * }
+		 */
+		
+		Object[] valuesArr = numbers.values().toArray();	//making an array of values (A values)
+		Object[] keyArr = numbers.keySet().toArray(); //making an array of keys (B values)
+		
+		/*
+		 * int keyArr[] = null; int i = 0; for (Object x: keyObj) { keyArr[i] = (int) x;
+		 * }
+		 */
+		
+		
+		
+		for (int k = 0; k < numbers.size(); k++) {
+			ListItem item = new ListItem((int)keyArr[k], (int)valuesArr[k]);
 			list.add(item);
 		}
 

@@ -13,13 +13,19 @@ import javax.swing.Icon;
 
 public class ListItem implements Comparable<ListItem> {
 	private int valA;
+	private int valB;
 
-	public ListItem(int valA) {
+	public ListItem(int valA, int valB) {
 		this.valA = valA;
+		this.valB = valB;
 	}
 
 	public int getValA() {
 		return valA;
+	}
+	
+	public int getValB() {
+		return valB;
 	}
 
 	public Icon createIcon(int diameter) {
@@ -42,18 +48,21 @@ public class ListItem implements Comparable<ListItem> {
 		private int borderSize = DEFAULT_THICKNESS;
 
 		private int valA;
+		private int valB;
 
-		public ItemIcon(int valA) {
+		public ItemIcon(int valA, int valB) {
 			this.valA = valA;
+			this.valB = valB;
 		}
 
-		public ItemIcon(int valA, int diameter) {
-			this(valA);
+		public ItemIcon(int valA, int valB, int diameter) {
+			this(valA, valB);
 			setDiameter(diameter);
 		}
 
 		public ItemIcon(ListItem item) {
 			this.valA = item.getValA();
+			this.valB = item.getValB();
 		}
 
 		public ItemIcon(ListItem item, int diameter) {
@@ -91,9 +100,9 @@ public class ListItem implements Comparable<ListItem> {
 			g2.setPaint(Color.RED);
 
 			// draw text
-			Font f = new Font("Arial", Font.BOLD, 14);
+			Font f = new Font("Arial", Font.BOLD, 11);
 			FontMetrics fm = g.getFontMetrics(f);
-			String str = ((Integer) valA).toString();
+			String str = ((Integer) valA).toString() + "  |  " + ((Integer) valB).toString(); // the | separates valA and valB --> form: "valA | valB"
 			Rectangle2D rect = fm.getStringBounds(str, g2);
 
 			int textHeight = (int) rect.getHeight();
